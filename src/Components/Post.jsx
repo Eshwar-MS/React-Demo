@@ -1,10 +1,10 @@
 //capital names for files containing React components
 
-function Post() {
+function Post(props) {
   return (
     <div>
-      <p>Eshwar</p>
-      <p>I like working on React!!!</p>
+      <p>{props.author}</p>
+      <p>{props.message}</p>
     </div>
   );
 }
