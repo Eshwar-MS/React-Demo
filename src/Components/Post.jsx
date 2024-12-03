@@ -1,10 +1,11 @@
 //capital names for files containing React components
+import styles from "./Post.module.css"; //For importing css files in jsx files
 
 function Post(props) {
   return (
-    <div>
-      <p>{props.author}</p>
-      <p>{props.message}</p>
+    <div className={styles.post}>
+      <p className={styles.author}>{props.author}</p>
+      <p className={styles.text}>{props.message}</p>
     </div>
   );
 }
