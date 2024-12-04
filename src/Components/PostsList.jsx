@@ -5,17 +5,12 @@ import styles from "./PostsList.module.css";
 import { useState } from "react";
 
 function PostsList(props) {
-  const [modalIsVisible, setModalIsVisible] = useState(true);
   const [updatedText, setUpdatedText] = useState("");
   const [updatedAuthor, setUpdatedAuthor] = useState("");
   //The useState() hook not only stores a value but also tells React to re-render the component whenever the state is updated. //any chsnges in these two states the whole (PostsList ) component will be rendered againn
   // updatedText: A state variable that holds the current value of the textarea.
   // setUpdatedText: A function provided by useState to update the value of updatedText.
   // Initial Value: The state is initialized with an empty string ("").
-
-  function hideModalhandler() {
-    setModalIsVisible(false);
-  }
 
   function bodyChangeHandler(event) {
     setUpdatedText(event.target.value);
@@ -26,8 +21,8 @@ function PostsList(props) {
   }
   return (
     <>
-      {modalIsVisible ? (
-        <Modal onHide={hideModalhandler}>
+      {props.isPosting ? (
+        <Modal onHide={props.onStopPosting}>
           <NewPost
             onBodyChange={bodyChangeHandler}
             onAuthorChange={authorChangeHandler}
