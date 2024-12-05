@@ -21,10 +21,10 @@ function NewPost(props) {
     event.preventDefault();
     const postData = {
       name: updatedAuthor,
-      text: updatedText,
+      body: updatedText,
     };
+    props.onAddPost(postData);
     props.onCancel();
-    console.log(postData);
   }
   return (
     <form className={classes.form} onSubmit={submitHandler}>
