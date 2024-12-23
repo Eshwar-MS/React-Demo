@@ -1,6 +1,7 @@
 import { useState } from "react";
 import classes from "./NewPost.module.css";
 import Modal from "../Components/Modal";
+import { Link } from "react-router-dom";
 
 function NewPost(props) {
   const [updatedText, setUpdatedText] = useState("");
@@ -44,14 +45,14 @@ function NewPost(props) {
           <textarea id="body" required rows={3} onChange={bodyChangeHandler} />
         </p>
         <p className={classes.actions}>
-          <button type="button" onClick={props.onCancel}>
+          <Link to=".." type="button">
             Cancel
-          </button>
+          </Link>
           <button>Submit</button>
         </p>
       </form>
     </Modal>
   );
 }
-
+// .. = going up one level , here it is back to homepage  // similar to '/'
 export default NewPost;
