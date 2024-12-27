@@ -1,6 +1,6 @@
 import classes from "./NewPost.module.css";
 import Modal from "../Components/Modal";
-import { Link } from "react-router-dom";
+import { Link, Form, redirect } from "react-router-dom";
 
 function NewPost() {
   //The useState() hook not only stores a value but also tells React to re-render the component whenever the state is updated. //any chsnges in these two states the whole (PostsList ) component will be rendered againn
@@ -10,10 +10,10 @@ function NewPost() {
 
   return (
     <Modal>
-      <form className={classes.form}>
+      <Form method="post" className={classes.form}>
         <p>
           <label htmlFor="name">Your name</label>
-          <input type="text" id="name" name="author" required />
+          <input type="text" id="name" name="name" required />
         </p>
         <p>
           <label htmlFor="body">Text</label>
@@ -25,19 +25,22 @@ function NewPost() {
           </Link>
           <button>Submit</button>
         </p>
-      </form>
+      </Form>
     </Modal>
   );
 }
 // .. = going up one level , here it is back to homepage  // similar to '/'
 export default NewPost;
 
-export function action() {
-  fetch("http://localhost:8080/posts", {
+export async function action({ request }) {
+  const formData = await request.formData();
+  const postData = Object.fromEntries(formData); // {author :'...', body: '...' }
+  await fetch("http://localhost:8080/posts", {
     method: "POST",
     body: JSON.stringify(postData),
     headers: {
       "Content-Type": "application/json",
     },
   });
+  return redirect("/");
 }
