@@ -10,7 +10,12 @@ function PostsList() {
       {posts.length > 0 && (
         <ul className={styles.posts}>
           {posts.map((post, index) => (
-            <Post key={index} author={post.name} body={post.body} />
+            <Post
+              key={index}
+              id={post.id}
+              author={post.name}
+              body={post.body}
+            />
           ))}
         </ul>
       )}
